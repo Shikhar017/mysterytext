@@ -30,25 +30,28 @@ export default function SignIn() {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-    setIsSigningIn(true);
-      const response = await signIn("credentials", {
-        redirect: false,
-        identifier: data.identifier,
-        password: data.password
-      });
-      console.log("signIn response:", JSON.stringify(response));
-      if(response?.error){
-        toast.error(response.error, {
-          description: "Incorrect username or password"
-        })
-        setIsSigningIn(false);
-      }
-      if (response?.ok) {
+  setIsSigningIn(true);
+  try {
+    const response = await signIn("credentials", {
+      redirect: false,
+      identifier: data.identifier,
+      password: data.password
+    });
+    console.log("signIn response:", JSON.stringify(response));
+
+    if (response?.ok) {
       toast.success("Signed in successfully!")
       setIsSigningIn(false);
       router.replace("/dashboard")
-     }
+    } else {
+      toast.error(response?.error ?? "Sign in failed")
+      setIsSigningIn(false);
     }
+  } catch (err) {
+    console.log("signIn error:", err)
+    setIsSigningIn(false);
+  }
+}
 
   return (
   <main className="relative w-full h-screen md:h-210 lg:h-260">
