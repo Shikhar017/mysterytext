@@ -22,7 +22,7 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setIsSwitchLoading] = useState(false)
 
-  const { data: session } = useSession()
+  const { data: session,status } = useSession()
   const user: User = session?.user as User
 
   const form = useForm({
@@ -99,6 +99,13 @@ export default function DashboardPage() {
         description:"Profile URL has been copied to clipboard"
       })
   }
+  if (status === "loading") {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <Loader2 className="animate-spin h-8 w-8 text-gray-500" />
+    </div>
+  )
+}
 
   if (!session || !user) {
     return (
