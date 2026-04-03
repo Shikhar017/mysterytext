@@ -42,11 +42,11 @@ export default function SignIn() {
         })
         setIsSigningIn(false);
       }
-      if(response?.url){
-          toast.success("Signed in successfully!")
-          setIsSigningIn(false);
-         router.replace("/dashboard")
-      }
+      if (response?.ok) {
+      toast.success("Signed in successfully!")
+      setIsSigningIn(false);
+      router.replace("/dashboard")
+     }
     }
 
   return (
