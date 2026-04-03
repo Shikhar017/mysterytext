@@ -59,13 +59,13 @@ export default function Navbar() {
             </Link>
           )}
 
-          {pathname === "/dashboard" && (
-            <Link href="/">
-              <Button className="h-8 sm:h-9 px-3 sm:px-5 text-xs sm:text-sm font-medium tracking-wide rounded-md 
-                bg-gray-200 text-black hover:bg-gray-300 transition-all duration-200">
-                Home
-              </Button>
-            </Link>
+          {pathname !== "/" && (
+          <Link href="/">
+            <Button className="h-8 sm:h-9 px-3 sm:px-5 text-xs sm:text-sm font-medium tracking-wide rounded-md 
+             bg-gray-200 text-black hover:bg-gray-300 transition-all duration-200">
+             Home
+            </Button>
+          </Link>
           )}
 
           {session && pathname !== "/dashboard" && (
