@@ -13,8 +13,6 @@ import { Button } from "@/components/ui/button";
 import { signInSchema } from "@/schemas/signInSchema";
 import Spline from "@splinetool/react-spline";
 import { signIn } from "next-auth/react"; 
-import { set } from "mongoose";
-
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,29 +28,24 @@ export default function SignIn() {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-  setIsSigningIn(true);
-  try {
-    const response = await signIn("credentials", {
-      redirect: false,
-      identifier: data.identifier,
-      password: data.password
-    });
-    console.log("signIn response:", JSON.stringify(response));
-
-    if (response?.ok) {
-      toast.success("Signed in successfully!")
-      setIsSigningIn(false);
-      router.refresh();
-      router.replace("/dashboard")
-    } else {
-      toast.error(response?.error ?? "Sign in failed")
-      setIsSigningIn(false);
+    setIsSigningIn(true);
+      const response = await signIn("credentials", {
+        redirect: false,
+        identifier: data.identifier,
+        password: data.password
+      });
+      if(response?.error){
+        toast.error(response.error, {
+          description: "Incorrect username or password"
+        })
+        setIsSigningIn(false);
+      }
+      if(response?.url){
+          toast.success("Signed in successfully!")
+          setIsSigningIn(false);
+         router.replace("/dashboard")
+      }
     }
-  } catch (err) {
-    console.log("signIn error:", err)
-    setIsSigningIn(false);
-  }
-}
 
   return (
   <main className="relative w-full h-screen md:h-210 lg:h-260">
