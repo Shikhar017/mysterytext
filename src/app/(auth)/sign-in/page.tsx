@@ -42,6 +42,7 @@ export default function SignIn() {
     if (response?.ok) {
       toast.success("Signed in successfully!")
       setIsSigningIn(false);
+      router.refresh();
       router.replace("/dashboard")
     } else {
       toast.error(response?.error ?? "Sign in failed")
