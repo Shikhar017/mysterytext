@@ -1,8 +1,8 @@
-import { auth } from "../auth/[...nextauth]/route"
-import dbConnect from "@/lib/dbConnect"
+import { auth } from "@/auth"  // import dbConnect from "@/lib/dbConnect"
 import UserModel from "@/model/User"
 import { User } from "next-auth"
 import mongoose from "mongoose"
+import dbConnect from "@/lib/dbConnect"
 
 export async function POST(request:Request){
     await dbConnect()
