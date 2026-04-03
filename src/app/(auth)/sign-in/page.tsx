@@ -36,6 +36,7 @@ export default function SignIn() {
         identifier: data.identifier,
         password: data.password
       });
+      console.log("signIn response:", JSON.stringify(response));
       if(response?.error){
         toast.error(response.error, {
           description: "Incorrect username or password"
