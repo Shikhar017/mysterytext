@@ -49,15 +49,15 @@ export const authOptions:NextAuthConfig=({           // Exporting the full NextA
       }
       return token // Return updated token
     },
-    async session({ session, token }) {         //Created from the token on the server,Made available to your React components via useSession(),Easier to read and use than raw JWT
-      if (token) { 
-        session.user._id = token._id 
-        session.user.isVerified = token.isVerified 
-        session.user.isAcceptingMessages = token.isAcceptingMessages
-        session.user.username = token.username 
-      }
-      return session 
-    },
+    async session({ session, token }) {
+  if (token) {
+    session.user._id = token._id as string
+    session.user.isVerified = token.isVerified as boolean
+    session.user.isAcceptingMessages = token.isAcceptingMessages as boolean
+    session.user.username = token.username as string
+  }
+  return session
+  }
   },
   pages: {
     signIn: "/sign-in"                                      // It tells NextAuth **where your custom pages are** instead of using the default ones.
