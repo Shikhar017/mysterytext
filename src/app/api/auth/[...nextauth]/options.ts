@@ -65,6 +65,7 @@ export const authOptions:NextAuthConfig=({           // Exporting the full NextA
   session: {
     strategy: "jwt"
   },
-  secret: process.env.NEXTAUTH_SECRET, // It is a **secret key** that NextAuth uses to **encrypt and sign** the JWT token so nobody can tamper with it.
+  secret: process.env.AUTH_SECRET, // It is a **secret key** that NextAuth uses to **encrypt and sign** the JWT token so nobody can tamper with it.
 })
+export { GET, POST } from "@/auth";
 
