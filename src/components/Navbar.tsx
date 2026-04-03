@@ -8,9 +8,14 @@ import { usePathname } from "next/navigation"
 import { GhostIcon } from "lucide-react"
 
 export default function Navbar() {
-  const { data: session } = useSession()
+  const { data: session,status } = useSession()
   const user: User = session?.user as User
   const pathname = usePathname()
+
+  if (status === "loading") return (
+  <nav className="sticky top-0 z-50 h-16 border-b border-gray-700 bg-gradient-to-r from-gray-900 via-black to-gray-800" />
+)
+
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-700 
