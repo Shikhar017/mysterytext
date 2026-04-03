@@ -1,21 +1,26 @@
-import { resend } from "@/lib/resend";
+import { BrevoClient } from '@getbrevo/brevo';
+import { render } from '@react-email/render';
 import verificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse } from "@/types/ApiResponse";
 
-export async function sendVerificationEmail(email:string,username:string,verifyCode:string):Promise<ApiResponse>{
+const client = new BrevoClient({
+    apiKey: process.env.BREVO_API_KEY!,
+});
+
+export async function sendVerificationEmail(email: string, username: string, verifyCode: string): Promise<ApiResponse> {
     try {
-        await resend.emails.send({
-            from:"onboarding@resend.dev",
-            to:email,
-            subject:"Mystry message | Verification code",
-            react:verificationEmail({username,otp:verifyCode})
-        })
-        return {success:true,message:"Evrification email sent successfully"}
+        const htmlContent = await render(verificationEmail({ username, otp: verifyCode }));
+
+        await client.transactionalEmails.sendTransacEmail({
+            subject: "Mystery Message | Verification Code",
+            to: [{ email, name: username }],
+            sender: { name: "MysteryText", email: "shikharsrivastav017@gmail.com" },
+            htmlContent,
+        });
+
+        return { success: true, message: "Verification email sent successfully" };
     } catch (error) {
-        console.error("Error sending verification email",error)
-        return {
-            success:false,
-            message:"Failed to send verification email",
-        }
+        console.error("Error sending verification email", error);
+        return { success: false, message: "Failed to send verification email" };
     }
 }
