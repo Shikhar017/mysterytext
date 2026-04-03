@@ -57,18 +57,19 @@ export default function Home() {
     <div className="absolute pointer-events-none inset-0 z-10 flex flex-col lg:flex-row items-center justify-around px-4">
       
       {/* Quote Section */}
-      <div className="flex flex-col items-center justify-center mb-10 lg:mb-0 lg:mr-20">
-        <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-gray-800 drop-shadow-lg">
-          SHARE YOUR THOUGHTS
-        </h1>
-        <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-700 drop-shadow">
-          "Mystery grows with every message"
-        </h1>
+      <div className=" flex flex-col items-center justify-center text-center md:flex mb-10 lg:mb-0 lg:mr-20">
+       <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-gray-800 drop-shadow-lg">
+        SHARE YOUR THOUGHTS
+       </h1>
+       <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-700 drop-shadow">
+        "Mystery grows with every message"
+       </h1>
       </div>
+
 
       {/* Messaging UI */}
       <div className="w-full max-w-sm md:max-w-md p-6 md:p-8 rounded-xl bg-white/30 backdrop-blur-md shadow-2xl opacity-95 pointer-events-auto">
-        <div className="text-center mb-6">
+        <div className=" flex flex-col items-center text-center mb-6">
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold tracking-tight mb-2">
             Message Box
           </h1>

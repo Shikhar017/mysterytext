@@ -61,7 +61,7 @@ export default function SignIn() {
     <div className="absolute pointer-events-none inset-0 z-10 flex flex-col lg:flex-row items-center justify-around px-4">
       
       {/* Quote Section */}
-      <div className="flex flex-col items-center justify-center mb-10 lg:mb-0 lg:mr-20">
+      <div className=" flex flex-col items-center justify-center text-center md:flex mb-10 lg:mb-0 lg:mr-20">
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-800 drop-shadow-lg">
           WELCOME BACK
         </h1>
