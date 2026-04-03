@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect"
-import { auth } from "../../auth/[...nextauth]/route"
-import { User } from "next-auth"
+import { auth } from "@/auth"  // import { User } from "next-auth"
 import UserModel from "@/model/User"
+import { User } from "next-auth"
 
 export async function DELETE(request:Request,{params}:{params:Promise<{messageid:string}>}){      //Next.js internally calls your function with two arguments — the Request object first, then a context object containing params. So if you only write one parameter, you're capturing the Request, not the context.
     const param= await params 
